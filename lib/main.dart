@@ -4,6 +4,7 @@ import 'splashscreen.dart';
 import 'tabs/counter.dart';
 import 'tabs/myobs.dart';
 
+
 void main() => runApp(new MaterialApp(
       home: new SplashScreen(),
       routes: <String, WidgetBuilder>{
@@ -12,13 +13,15 @@ void main() => runApp(new MaterialApp(
     ));
 
 class VigiloApp extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = ThemeData(
+      primarySwatch: Colors.yellow,
+    );
     return MaterialApp(
         title: 'Vigilo',
-        theme: ThemeData(
-          primarySwatch: Colors.yellow,
-        ),
+        theme: theme,
         home: DefaultTabController(
           length: 3,
           child: Scaffold(
@@ -55,14 +58,14 @@ class VigiloApp extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.all(10),
-                  child: ObservationWidget(),
+                  child: ObservationWidget(theme),
                 ),
                 Padding(
                   padding: EdgeInsets.all(10),
                   child: CounterPage(title: "Montpellier"),
                 )
               ],
-            ),
+            )
           ),
         ));
   }

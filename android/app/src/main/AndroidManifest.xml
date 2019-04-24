@@ -10,6 +10,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="Vigilo Mobile"
         android:icon="@mipmap/launcher_icon">
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="VIGOLO_ANDROID_API_KEY"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

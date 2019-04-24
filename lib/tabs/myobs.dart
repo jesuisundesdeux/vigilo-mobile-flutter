@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
 
-class ObservationWidget extends StatefulWidget {
-  ObservationWidget({Key key, this.title}) : super(key: key);
+import 'newobs.dart';
 
-  final String title;
+class ObservationWidget extends StatefulWidget {
+
+  ObservationWidget(this.theme, {Key key}) : super(key: key);
+
+  
+  final ThemeData theme;
 
   @override
-  _ObservationState createState() => new _ObservationState();
+  _ObservationState createState() => new _ObservationState(theme);
 }
 
+Future<int> _addObs(BuildContext context, ThemeData theme) async {
+    return await showDialog<int>(
+        context: context,
+        builder: (BuildContext context) {
+          return NewObservation(theme);
+        });
+  }
+
 class _ObservationState extends State<ObservationWidget> {
+
+ _ObservationState(this.theme);
+
+   final ThemeData theme;
 
   int count = 1;
 
@@ -32,5 +48,11 @@ class _ObservationState extends State<ObservationWidget> {
         itemBuilder: (context, index) {
           return ListTile(title: Text("item $index"));
         },
-      ));
+      )
+      ,
+            floatingActionButton: new FloatingActionButton(
+                child: Icon(Icons.add_a_photo),
+                onPressed: () async {
+                  _addObs(context, theme);
+                }),);
 }

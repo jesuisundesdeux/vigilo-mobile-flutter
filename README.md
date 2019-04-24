@@ -20,3 +20,9 @@ samples, guidance on mobile development, and a full API reference.
 API Key must be set: 
 
 https://pub.dartlang.org/packages/google_maps_flutter
+
+Add those file should ne ignored...
+```bash
+git update-index --assume-unchanged android/app/src/main/AndroidManifest.xml
+git update-index --assume-unchanged ios/Runner/AppDelegate.m
+```

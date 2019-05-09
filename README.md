@@ -26,3 +26,5 @@ Add those file should ne ignored...
 git update-index --assume-unchanged android/app/src/main/AndroidManifest.xml
 git update-index --assume-unchanged ios/Runner/AppDelegate.m
 ```
+
+# CI

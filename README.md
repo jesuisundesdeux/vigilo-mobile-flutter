@@ -1,6 +1,6 @@
 # vigilo_mobile
 
-A new Flutter project.
+[![Codemagic build status](https://api.codemagic.io/apps/5cd4708b3f7fdc0011bba24e/5cd4708b3f7fdc0011bba24d/status_badge.svg)](https://codemagic.io/apps/5cd4708b3f7fdc0011bba24e/5cd4708b3f7fdc0011bba24d/latest_build)
 
 ## Getting Started
 

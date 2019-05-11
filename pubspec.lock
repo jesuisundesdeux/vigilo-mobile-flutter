@@ -79,14 +79,14 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_launcher_icons:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_launcher_icons
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.0"
   flutter_redux:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_redux
       url: "https://pub.dartlang.org"
@@ -98,7 +98,7 @@ packages:
     source: sdk
     version: "0.0.0"
   google_maps_flutter:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_maps_flutter
       url: "https://pub.dartlang.org"
@@ -112,7 +112,7 @@ packages:
     source: hosted
     version: "2.0.8"
   image_picker:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: image_picker
       url: "https://pub.dartlang.org"
@@ -139,6 +139,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.2"
+  path_provider:
+    dependency: transitive
+    description:
+      name: path_provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.0+1"
   pedantic:
     dependency: transitive
     description:
@@ -167,6 +174,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+  redux_persist:
+    dependency: transitive
+    description:
+      name: redux_persist
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.2"
+  redux_persist_flutter:
+    dependency: "direct main"
+    description:
+      name: redux_persist_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.1"
+  shared_preferences:
+    dependency: "direct main"
+    description:
+      name: shared_preferences
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -200,6 +228,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   term_glyph:
     dependency: transitive
     description:
@@ -243,5 +278,5 @@ packages:
     source: hosted
     version: "2.1.15"
 sdks:
-  dart: ">=2.2.0 <3.0.0"
+  dart: ">=2.2.2 <3.0.0"
   flutter: ">=0.11.9 <2.0.0"

@@ -13,7 +13,7 @@ import 'package:vigilo_mobile/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(VigiloApp());
+    //await tester.pumpWidget(VigiloApp(null));
 
     // Verify that our counter starts at 0.
     // expect(find.text('0'), findsOneWidget);

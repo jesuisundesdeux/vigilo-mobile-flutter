@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'newobs.dart';
 
+import 'package:vigilo_mobile/models/Models.dart';
+import 'package:vigilo_mobile/services/Observation.dart';
+
 class ObservationWidget extends StatefulWidget {
   ObservationWidget(this.theme, {Key key}) : super(key: key);
 
@@ -24,11 +27,19 @@ class _ObservationState extends State<ObservationWidget> {
 
   final ThemeData theme;
 
+  final ObservationService _observationService =
+      new ObservationService("https://vigilo-beta.jesuisundesdeux.org");
+
+  ObservationsList observations = ObservationsList.empty();
+
   int count = 1;
 
-  refresh() => setState(() {
-        count++;
-      });
+  refresh() => _observationService
+      .getObservations()
+      .asStream()
+      .forEach((observations) => setState(() {
+            this.observations = observations;
+          }));
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -41,9 +52,10 @@ class _ObservationState extends State<ObservationWidget> {
           ],
         ),
         body: ListView.builder(
-          itemCount: count,
+          itemCount: observations.observations.length,
           itemBuilder: (context, index) {
-            return ListTile(title: Text("item $index"));
+            Observation obs = observations.observations[index];
+            return ListTile(leading: Text(obs.token),title: Text(obs.token));
           },
         ),
         floatingActionButton: new FloatingActionButton(

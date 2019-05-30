@@ -21,8 +21,6 @@ class _NewObservationState extends State<NewObservation> {
   File _imageFile;
   Image _image = Image.asset("assets/images/jeSuisUnDesDeux.png", width: 32);
 
-
-
   pickPhoto(ImageSource source) => () async {
         var imageFile = await ImagePicker.pickImage(source: source);
 
@@ -33,8 +31,9 @@ class _NewObservationState extends State<NewObservation> {
       };
 
   bool canContinue() {
-    switch(current){
-      case 0  : return _imageFile != null;
+    switch (current) {
+      case 0:
+        return _imageFile != null;
     }
     return false;
   }
@@ -61,8 +60,9 @@ class _NewObservationState extends State<NewObservation> {
       new Step(
           title: Text("Geo"),
           content: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: 100, maxHeight: 400, minWidth: 100, maxWidth: 300),
-            child: MyMap()),
+              constraints: BoxConstraints(
+                  minHeight: 100, maxHeight: 400, minWidth: 100, maxWidth: 300),
+              child: MyMap()),
           isActive: _imageFile != null),
       new Step(title: Text("Desc"), content: new Text("Hello!"), isActive: true)
     ];
@@ -108,28 +108,22 @@ class _NewObservationState extends State<NewObservation> {
                 // Log function call
                 print("onStepContinue : " + current.toString());
               },
-              controlsBuilder: 
-              
-              
-              (BuildContext context, {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
-         return Row(
-           children: <Widget>[
-             FlatButton(
-               color: Theme.of(context).accentColor,
-               onPressed: canContinue()? onStepContinue : null,
-               child: const Text('CONTINUE'),
-               
-             ),
-             FlatButton(
-               onPressed: onStepCancel,
-               child: const Text('CANCEL'),
-             ),
-           ],
-         );}
-              
-              
-              
-              ,
+              controlsBuilder: (BuildContext context,
+                  {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
+                return Row(
+                  children: <Widget>[
+                    FlatButton(
+                      color: Theme.of(context).accentColor,
+                      onPressed: canContinue() ? onStepContinue : null,
+                      child: const Text('CONTINUE'),
+                    ),
+                    FlatButton(
+                      onPressed: onStepCancel,
+                      child: const Text('CANCEL'),
+                    ),
+                  ],
+                );
+              },
             )));
   }
 }

@@ -14,23 +14,23 @@ class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Row(children: <Widget>[
-                  CounterWidget("Vélo", store),
-                  CounterWidget("Trotinette", store),
-                  CounterWidget("GCUM", store)
-                ]),
-              ],
-            ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: _resetCounters,
-            tooltip: 'Reset',
-            child: Icon(Icons.refresh),
-          ),
-        );
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(children: <Widget>[
+              CounterWidget("Vélo", store),
+              CounterWidget("Trotinette", store),
+              CounterWidget("GCUM", store)
+            ]),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _resetCounters,
+        tooltip: 'Reset',
+        child: Icon(Icons.refresh),
+      ),
+    );
   }
 }

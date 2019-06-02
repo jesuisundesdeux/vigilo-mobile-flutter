@@ -30,6 +30,7 @@ dependencies:
   flutter_launcher_icons: "^0.7.0"
   image_picker: "^0.5.4"
   google_maps_flutter: ^0.5.7
+  intl: ^0.15.8
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:intl/intl.dart';
+
 import 'newobs.dart';
 
 import 'package:vigilo_mobile/models/Models.dart';
@@ -55,7 +57,9 @@ class _ObservationState extends State<ObservationWidget> {
           itemCount: observations.observations.length,
           itemBuilder: (context, index) {
             Observation obs = observations.observations[index];
-            return ListTile(leading: Text(obs.token),title: Text(obs.token));
+            return ListTile(leading: _observationService.getImage(obs.token),
+                title: Text(obs.token),
+                subtitle: Text(new DateFormat().format(new DateTime.fromMicrosecondsSinceEpoch(obs.time))));
           },
         ),
         floatingActionButton: new FloatingActionButton(

@@ -1,7 +1,14 @@
+class Positon{
+  final double lat;
+  final double lon;
+
+  Positon(this.lat, this.lon);
+
+}
+
 class Observation {
   String token;
-  double coordinates_lat;
-  double coordinates_lon;
+  Positon positon;
   String address;
   String comment;
   String explanation;
@@ -13,8 +20,7 @@ class Observation {
 
   Observation(
       {this.token,
-      this.coordinates_lat,
-      this.coordinates_lon,
+      this.positon,
       this.address,
       this.comment,
       this.explanation,
@@ -24,12 +30,10 @@ class Observation {
       this.categorie,
       this.approved});
 
-
-  factory Observation.fromJson(Map<String, dynamic> json){
+  factory Observation.fromJson(Map<String, dynamic> json) {
     return new Observation(
-        token:json["token"],
-        coordinates_lat : double.parse(json["coordinates_lat"]),
-        coordinates_lon: double.parse(json["coordinates_lon"]),
+        token: json["token"],
+        positon: Positon(double.parse(json["coordinates_lat"]),double.parse(json["coordinates_lon"])),
         address: json["address"],
         comment: json["comment"],
         explanation: json["explanation"],
@@ -37,12 +41,9 @@ class Observation {
         status: int.parse(json["status"]),
         group: json["group"],
         categorie: int.parse(json["categorie"]),
-        approved: int.parse(json["approved"])
-    );
+        approved: int.parse(json["approved"]));
   }
-
 }
-
 
 class ObservationsList {
   final List<Observation> observations;
@@ -57,13 +58,46 @@ class ObservationsList {
     );
   }
 
-
-    factory ObservationsList.fromJson(List<dynamic> parsedJson) {
-
-    List<Observation> observations = parsedJson.map((i)=>Observation.fromJson(i)).toList();
+  factory ObservationsList.fromJson(List<dynamic> parsedJson) {
+    List<Observation> observations =
+        parsedJson.map((i) => Observation.fromJson(i)).toList();
 
     return new ObservationsList(
       observations: observations,
     );
   }
+}
+
+class Category {
+  final int id;
+  final String name;
+
+  Category(this.id, this.name);
+
+  factory Category.fromJson(Map<String, dynamic> parsedJson){
+    return Category(
+      parsedJson["catid"],
+      parsedJson["catname"]
+    );
+  }
+
+}
+
+class CategoriesList {
+  final Map<int,String> categories;
+
+  CategoriesList(this.categories);
+
+  factory CategoriesList.fromJson(List<dynamic> parsedJson) {
+
+     List<Category> categories = parsedJson.map((c)=>Category.fromJson(c)).toList();
+     Map<int, String> names = new Map();
+
+
+     categories.forEach((c)=> names[c.id] = c.name);
+
+
+     return new CategoriesList(names);
+  }
+
 }

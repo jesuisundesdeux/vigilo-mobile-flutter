@@ -34,7 +34,14 @@ class _ObservationState extends State<ObservationWidget> {
 
   ObservationsList observations = ObservationsList.empty();
 
-  int count = 1;
+
+  void initState() {
+    super.initState();
+
+    _observationService.getCategories()
+      .asStream().forEach((cl)=>"");
+
+  }
 
   refresh() => _observationService
       .getObservations()
@@ -59,7 +66,7 @@ class _ObservationState extends State<ObservationWidget> {
             Observation obs = observations.observations[index];
             return ListTile(leading: _observationService.getImage(obs.token),
                 title: Text(obs.token),
-                subtitle: Text(new DateFormat().format(new DateTime.fromMicrosecondsSinceEpoch(obs.time))));
+                subtitle: Text(new DateFormat().format(new DateTime.fromMillisecondsSinceEpoch(1000*obs.time))));
           },
         ),
         floatingActionButton: new FloatingActionButton(

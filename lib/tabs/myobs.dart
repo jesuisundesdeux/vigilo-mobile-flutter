@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
+import 'package:dependencies/dependencies.dart';
+
+
 import 'newobs.dart';
 
 import 'package:vigilo_mobile/models/Models.dart';
 import 'package:vigilo_mobile/services/Observation.dart';
 
+import 'package:dependencies_flutter/dependencies_flutter.dart';
+
 class ObservationWidget extends StatefulWidget {
+
+
   ObservationWidget(this.theme, {Key key}) : super(key: key);
 
   final ThemeData theme;
@@ -24,13 +31,12 @@ Future<int> _addObs(BuildContext context, ThemeData theme) async {
       });
 }
 
-class _ObservationState extends State<ObservationWidget> {
+class _ObservationState extends State<ObservationWidget>  with InjectorWidgetMixin {
   _ObservationState(this.theme);
+
 
   final ThemeData theme;
 
-  final ObservationService _observationService =
-      new ObservationService("https://vigilo-beta.jesuisundesdeux.org");
 
   ObservationsList observations = ObservationsList.empty();
 
@@ -38,12 +44,12 @@ class _ObservationState extends State<ObservationWidget> {
   void initState() {
     super.initState();
 
-    _observationService.getCategories()
-      .asStream().forEach((cl)=>"");
+//    _observationService.getCategories()
+//      .asStream().forEach((cl)=>"");
 
   }
 
-  refresh() => _observationService
+  refresh(Injector injector) => () => injector.get<ObservationService>()
       .getObservations()
       .asStream()
       .forEach((observations) => setState(() {
@@ -51,12 +57,12 @@ class _ObservationState extends State<ObservationWidget> {
           }));
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget buildWithInjector(BuildContext context, Injector injector) => Scaffold(
         appBar: AppBar(
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.refresh),
-              onPressed: refresh,
+              onPressed: refresh(injector),
             )
           ],
         ),
@@ -64,7 +70,7 @@ class _ObservationState extends State<ObservationWidget> {
           itemCount: observations.observations.length,
           itemBuilder: (context, index) {
             Observation obs = observations.observations[index];
-            return ListTile(leading: _observationService.getImage(obs.token),
+            return ListTile(leading: injector.get<ObservationService>().getImage(obs.token),
                 title: Text(obs.token),
                 subtitle: Text(new DateFormat().format(new DateTime.fromMillisecondsSinceEpoch(1000*obs.time))));
           },

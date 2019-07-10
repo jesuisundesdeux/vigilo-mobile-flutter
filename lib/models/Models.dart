@@ -38,7 +38,7 @@ class Observation {
         comment: json["comment"],
         explanation: json["explanation"],
         time: int.parse(json["time"]),
-        status: int.parse(json["status"]),
+        status: json["status"],
         group: json["group"],
         categorie: int.parse(json["categorie"]),
         approved: int.parse(json["approved"]));

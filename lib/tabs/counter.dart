@@ -3,6 +3,7 @@ import 'package:redux/redux.dart';
 
 import 'package:vigilo_mobile/CounterWidget.dart';
 import 'package:vigilo_mobile/state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CounterPage extends StatelessWidget {
   CounterPage(this.store, {Key key}) : super(key: key);
@@ -19,9 +20,15 @@ class CounterPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Row(children: <Widget>[
-              CounterWidget("Vélo", store),
-              CounterWidget("Trotinette", store),
-              CounterWidget("GCUM", store)
+              BlocProvider<CounterBloc>(
+                  builder: (context) => CounterBloc(),
+                  child: CounterWidget("Vélo", store)),
+              BlocProvider<CounterBloc>(
+                  builder: (context) => CounterBloc(),
+                  child: CounterWidget("Trotinette", store)),
+              BlocProvider<CounterBloc>(
+                  builder: (context) => CounterBloc(),
+                  child: CounterWidget("GCUM", store))
             ]),
           ],
         ),

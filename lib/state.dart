@@ -1,4 +1,4 @@
-enum CounterActions { Increment, Decrement, Reset }
+enum CounterActions {   Increment, Decrement, Reset }
 
 class Count {
   Count(this.name, this.action);

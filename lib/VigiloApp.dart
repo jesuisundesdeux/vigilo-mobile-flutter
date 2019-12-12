@@ -2,28 +2,25 @@ import 'package:flutter/material.dart';
 
 import 'tabs/counter.dart';
 import 'tabs/myobs.dart';
-import 'state.dart';
+
 
 import 'package:dependencies_flutter/dependencies_flutter.dart';
 import 'package:dependencies/dependencies.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+
 import 'package:vigilo_mobile/modules/Http.dart';
 
-import 'package:redux/redux.dart';
+
 
 class VigiloApp extends StatelessWidget {
-  VigiloApp(this.store);
+  VigiloApp();
 
-  final Store<AppState> store;
 
   @override
   Widget build(BuildContext context) {
     ThemeData theme = ThemeData(
       primarySwatch: Colors.yellow,
     );
-    return StoreProvider(
-        store: store,
-        child: MaterialApp(
+    return MaterialApp(
             title: 'Vigilo',
             theme: theme,
             home: new InjectorWidget(
@@ -37,15 +34,8 @@ class VigiloApp extends StatelessWidget {
                             Image.asset("assets/images/jeSuisUnDesDeux.png",
                                 width: 32),
                             SizedBox(width: 16),
-                            StoreConnector<AppState, Function>(
-                              // Return a function to dispatch an increment action
-                              converter: (store) => (String value) =>
-                                  store.dispatch(CitySelected(value)),
-                              builder: (_, sel) => DropdownButton(
-                                    value: store.state.city,
-                                    onChanged: (String newValue) {
-                                      sel(newValue);
-                                    },
+                             DropdownButton(
+                                    value: "Montpellier",
                                     items: [
                                       for (var city in [
                                         "Montpellier",
@@ -55,7 +45,7 @@ class VigiloApp extends StatelessWidget {
                                             value: city, child: Text(city))
                                     ],
                                   ),
-                            ),
+                            
                           ],
                         ),
                         bottom: TabBar(isScrollable: true, tabs: <Widget>[
@@ -85,10 +75,10 @@ class VigiloApp extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsets.all(10),
-                            child: CounterPage(store),
+                            child: CounterPage(),
                           )
                         ],
                       )),
-                ))));
+                )));
   }
 }

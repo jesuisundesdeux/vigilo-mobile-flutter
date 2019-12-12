@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
-import 'package:vigilo_mobile/state.dart';
 import 'package:bloc/bloc.dart';
 
 class CounterWidget extends StatelessWidget {
-  CounterWidget(this.title, this.store);
+  CounterWidget(this.title);
 
   final String title;
 
-  final Store<AppState> store;
 
   _increment(CounterBloc counterBloc) => ()  {
     counterBloc.dispatch(CounterEvent.increment);
-    store.dispatch(Count(this.title, CounterActions.Increment));
+
   };
 
   _decrement(CounterBloc counterBloc) => (){
     counterBloc.dispatch(CounterEvent.decrement);
-    store.dispatch(Count(this.title, CounterActions.Decrement));
   };
 
   @override

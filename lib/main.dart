@@ -5,31 +5,14 @@ import 'dart:math';
 import 'splashscreen.dart';
 import 'state.dart';
 
-import 'package:redux/redux.dart';
-import 'package:redux_persist/redux_persist.dart';
-import 'package:redux_persist_flutter/redux_persist_flutter.dart';
-
 import 'VigiloApp.dart';
 
 void main() async {
-  final persistor = Persistor<AppState>(
-    storage: FlutterStorage(),
-    serializer: JsonSerializer<AppState>(AppState.fromJson),
-  );
-
-  // Load initial state
-  final initialState = await persistor.load();
-
-  final store = Store<AppState>(
-    reducer,
-    initialState: initialState ?? AppState(),
-    middleware: [persistor.createMiddleware()],
-  );
 
   runApp(new MaterialApp(
     home: new SplashScreen(),
     routes: <String, WidgetBuilder>{
-      '/homeScreen': (BuildContext) => new VigiloApp(store)
+      '/homeScreen': (BuildContext) => new VigiloApp()
     },
   ));
 }

@@ -28,8 +28,6 @@ dependencies:
   meta: ^1.1.6
   http: ^0.12.0+2
   shared_preferences: ^0.5.1
-  flutter_redux: ^0.5.3
-  redux_persist_flutter: ^0.8.1
   flutter_launcher_icons: "^0.7.0"
   image_picker: "^0.5.4"
   google_maps_flutter: ^0.5.7

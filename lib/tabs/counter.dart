@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:redux/redux.dart';
+
 
 import 'package:vigilo_mobile/CounterWidget.dart';
-import 'package:vigilo_mobile/state.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CounterPage extends StatelessWidget {
-  CounterPage(this.store, {Key key}) : super(key: key);
+  CounterPage( {Key key}) : super(key: key);
 
-  final Store<AppState> store;
+  
 
-  void _resetCounters() => store.dispatch(Count("", CounterActions.Reset));
+  void _resetCounters() => {};
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,13 @@ class CounterPage extends StatelessWidget {
             Row(children: <Widget>[
               BlocProvider<CounterBloc>(
                   builder: (context) => CounterBloc(),
-                  child: CounterWidget("Vélo", store)),
+                  child: CounterWidget("Vélo")),
               BlocProvider<CounterBloc>(
                   builder: (context) => CounterBloc(),
-                  child: CounterWidget("Trotinette", store)),
+                  child: CounterWidget("Trotinette")),
               BlocProvider<CounterBloc>(
                   builder: (context) => CounterBloc(),
-                  child: CounterWidget("GCUM", store))
+                  child: CounterWidget("GCUM"))
             ]),
           ],
         ),
